@@ -21,9 +21,12 @@ What is its value?
 ------
 How many orders were shipped by Speedy Express in total? 54
 #### SQL Query :
-SELECT COUNT(*) 
+SELECT COUNT(*)
+
 FROM (Orders
+
 INNER JOIN Shippers ON Shippers.ShipperID = Orders.ShipperID) 
+
 WHERE ShipperName = 'Speedy Express'
 
 ------
