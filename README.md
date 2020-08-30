@@ -43,10 +43,10 @@ GROUP BY LastName
 ORDER BY COUNT(OrderID) DESC;
 
 ------
-What product was ordered the most by customers in Germany?Gorgonzola Telino
+What product was ordered the most by customers in Germany?Gorgonzola Telino(ProductID = 31)
 #### SQL Query :
 
-SELECT ProductName,COUNT(Products.ProductID) AS OrdersGiven
+SELECT Products.ProductID,ProductName,COUNT(Products.ProductID) AS OrdersGiven
 
 FROM (((Products
 
@@ -58,9 +58,11 @@ INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
 
 WHERE Country = 'Germany'
 
-GROUP BY ProductName
+GROUP BY Products.ProductID,ProductName
 
 ORDER BY COUNT(Products.ProductID) DESC
+
+
 
 
 
