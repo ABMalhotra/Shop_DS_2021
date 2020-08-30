@@ -1,3 +1,5 @@
+# The solutions are contained here.
+
 #### Question 1: Given some sample data, write a program to answer the following: click here to access the required data set.
 
 This question is answered here:
@@ -18,32 +20,39 @@ What is its value? **387.74$**
 
 How many orders were shipped by Speedy Express in total? **54**
 ##### SQL Query :
-SELECT COUNT(*)
+SELECT ShipperName,COUNT(*) AS OrdersShipped
 
 FROM (Orders
 
-INNER JOIN Shippers ON Shippers.ShipperID = Orders.ShipperID) 
+INNER JOIN Shippers ON Shippers.ShipperID = Orders.ShipperID)
 
-WHERE ShipperName = 'Speedy Express'
+WHERE ShipperName = 'Speedy Express';
 
 ------
 What is the last name of the employee with the most orders? **Peacock**
 ##### SQL Query :
-SELECT LastName, COUNT(OrderID) AS OrdersTaken
+
+SELECT LastName, MAX(OrdersTaken)
+
+FROM
+
+(SELECT LastName, COUNT(*) AS OrdersTaken
 
 FROM (Orders
 
-LEFT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
+INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
 
-GROUP BY LastName
-
-ORDER BY COUNT(OrderID) DESC;
+GROUP BY Employees.EmployeeID);
 
 ------
 What product was ordered the most by customers in Germany? **Gorgonzola Telino(ProductID = 31)**
 ##### SQL Query :
 
-SELECT Products.ProductID,ProductName,COUNT(Products.ProductID) AS OrdersGiven
+SELECT ProductID,ProductName,MAX(OrdersFromGermany) 
+
+FROM
+
+(SELECT Products.ProductID,ProductName,COUNT(*) AS OrdersFromGermany
 
 FROM (((Products
 
@@ -51,13 +60,10 @@ INNER JOIN OrderDetails ON Products.ProductID=OrderDetails.ProductID)
 
 INNER JOIN Orders ON OrderDetails.OrderID = Orders.OrderID)
 
-INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID) WHERE Country = 'Germany'
 
-WHERE Country = 'Germany'
-
-GROUP BY Products.ProductID,ProductName
-
-ORDER BY COUNT(Products.ProductID) DESC
+GROUP BY Products.ProductID);
+        
 
 
 
