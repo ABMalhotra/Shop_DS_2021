@@ -27,12 +27,17 @@ INNER JOIN Shippers ON Shippers.ShipperID = Orders.ShipperID)
 WHERE ShipperName = 'Speedy Express'
 
 ------
-What is the last name of the employee with the most orders?
+What is the last name of the employee with the most orders? Peacock
 #### SQL Query :
-SELECT COUNT(*) 
+SELECT LastName, COUNT(OrderID) AS OrdersTaken
+
 FROM (Orders
-INNER JOIN Shippers ON Shippers.ShipperID = Orders.ShipperID) 
-WHERE ShipperName = 'Speedy Express'
+
+LEFT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
+
+GROUP BY LastName
+
+ORDER BY COUNT(OrderID) DESC;
 
 ------
 What product was ordered the most by customers in Germany?
