@@ -16,8 +16,7 @@ What is its value? **387.74$**
 #### Question 2: For this question you’ll need to use SQL. Follow this link to access the data set required for the challenge. Please use queries to answer the following questions. Paste your queries along with your final numerical answers below.
 
 
-------
-How many orders were shipped by Speedy Express in total?**54**
+How many orders were shipped by Speedy Express in total? **54**
 ##### SQL Query :
 SELECT COUNT(*)
 
@@ -28,7 +27,7 @@ INNER JOIN Shippers ON Shippers.ShipperID = Orders.ShipperID)
 WHERE ShipperName = 'Speedy Express'
 
 ------
-What is the last name of the employee with the most orders?**Peacock**
+What is the last name of the employee with the most orders? **Peacock**
 ##### SQL Query :
 SELECT LastName, COUNT(OrderID) AS OrdersTaken
 
