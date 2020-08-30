@@ -3,11 +3,9 @@
 This question is answered here:
 https://github.com/ABMalhotra/Shop_DS_2021/blob/master/Sneaker_Pricing.ipynb
 
-What metric would you report for this dataset? 
-#### mean of order_amount/total_items
+What metric would you report for this dataset? **mean of (order_amount/total_items)**
 
-What is its value? 
-#### $387.74
+What is its value? **387.74$**
 
 
 -------------------------------------------------
@@ -19,8 +17,8 @@ What is its value?
 
 
 ------
-How many orders were shipped by Speedy Express in total?54
-#### SQL Query :
+How many orders were shipped by Speedy Express in total?**54**
+##### SQL Query :
 SELECT COUNT(*)
 
 FROM (Orders
@@ -30,8 +28,8 @@ INNER JOIN Shippers ON Shippers.ShipperID = Orders.ShipperID)
 WHERE ShipperName = 'Speedy Express'
 
 ------
-What is the last name of the employee with the most orders?Peacock
-#### SQL Query :
+What is the last name of the employee with the most orders?**Peacock**
+##### SQL Query :
 SELECT LastName, COUNT(OrderID) AS OrdersTaken
 
 FROM (Orders
@@ -43,8 +41,8 @@ GROUP BY LastName
 ORDER BY COUNT(OrderID) DESC;
 
 ------
-What product was ordered the most by customers in Germany?Gorgonzola Telino(ProductID = 31)
-#### SQL Query :
+What product was ordered the most by customers in Germany? **Gorgonzola Telino(ProductID = 31)**
+##### SQL Query :
 
 SELECT Products.ProductID,ProductName,COUNT(Products.ProductID) AS OrdersGiven
 
