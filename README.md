@@ -19,7 +19,7 @@ What is its value?
 
 
 ------
-How many orders were shipped by Speedy Express in total? 54
+How many orders were shipped by Speedy Express in total?54
 #### SQL Query :
 SELECT COUNT(*)
 
@@ -30,7 +30,7 @@ INNER JOIN Shippers ON Shippers.ShipperID = Orders.ShipperID)
 WHERE ShipperName = 'Speedy Express'
 
 ------
-What is the last name of the employee with the most orders? Peacock
+What is the last name of the employee with the most orders?Peacock
 #### SQL Query :
 SELECT LastName, COUNT(OrderID) AS OrdersTaken
 
@@ -43,9 +43,26 @@ GROUP BY LastName
 ORDER BY COUNT(OrderID) DESC;
 
 ------
-What product was ordered the most by customers in Germany?
+What product was ordered the most by customers in Germany?Gorgonzola Telino
 #### SQL Query :
-SELECT COUNT(*) 
-FROM (Orders
-INNER JOIN Shippers ON Shippers.ShipperID = Orders.ShipperID) 
-WHERE ShipperName = 'Speedy Express'
+
+SELECT ProductName,COUNT(Products.ProductID) AS OrdersGiven
+
+FROM (((Products
+
+INNER JOIN OrderDetails ON Products.ProductID=OrderDetails.ProductID)
+
+INNER JOIN Orders ON OrderDetails.OrderID = Orders.OrderID)
+
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
+
+WHERE Country = 'Germany'
+
+GROUP BY ProductName
+
+ORDER BY COUNT(Products.ProductID) DESC
+
+
+
+
+        
