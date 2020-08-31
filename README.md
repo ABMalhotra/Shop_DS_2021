@@ -1,4 +1,4 @@
-# The solutions are contained here.
+# The solutions are contained in README.
 
 #### Question 1: Given some sample data, write a program to answer the following: click here to access the required data set.
 
