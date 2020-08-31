@@ -20,6 +20,7 @@ What is its value? **387.74$**
 
 How many orders were shipped by Speedy Express in total? **54**
 ##### SQL Query :
+
 SELECT ShipperName,COUNT(*) AS OrdersShipped
 
 FROM (Orders
@@ -38,7 +39,9 @@ FROM
 
 (SELECT LastName, COUNT(*) AS OrdersTaken
 
-FROM (Orders INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
+FROM (Orders 
+
+INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
 
 GROUP BY Employees.EmployeeID);
 
@@ -52,11 +55,15 @@ FROM
 
 (SELECT Products.ProductID,ProductName,COUNT(*) AS OrdersFromGermany
 
-FROM (((Products INNER JOIN OrderDetails ON Products.ProductID=OrderDetails.ProductID)
+FROM (((Products 
+
+INNER JOIN OrderDetails ON Products.ProductID=OrderDetails.ProductID)
 
 INNER JOIN Orders ON OrderDetails.OrderID = Orders.OrderID)
 
-INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID) WHERE Country = 'Germany'
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID) 
+
+WHERE Country = 'Germany'
 
 GROUP BY Products.ProductID);
         
