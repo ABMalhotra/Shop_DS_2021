@@ -1,13 +1,13 @@
-# The solutions are contained in README.
+# The solutions are contained below.
 
 #### Question 1: Given some sample data, write a program to answer the following: click here to access the required data set.
 
-This question is answered here:
+This question is answered in a detailed Jupyter notebook here:
 https://github.com/ABMalhotra/Shop_DS_2021/blob/master/Sneaker_Pricing.ipynb
 
-What metric would you report for this dataset? **mean of (order_amount/total_items)**
+What metric would you report for this dataset? A. **Frequency weighted median of (order_amount/total_items), using total_items as the weight.**
 
-What is its value? **387.74$**
+What is its value? **352.00$**
 
 
 -------------------------------------------------
@@ -35,42 +35,34 @@ What is the last name of the employee with the most orders? **Peacock**
 
 SELECT LastName, MAX(OrdersTaken)
 
-FROM 
+FROM
 
 (SELECT LastName, COUNT(*) AS OrdersTaken
 
-FROM (Orders 
+FROM (Orders
 
 INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
 
 GROUP BY Employees.EmployeeID);
 
 ------
-What product was ordered the most by customers in Germany? **Gorgonzola Telino(ProductID = 31)**
+What product was ordered the most by customers in Germany? **Boston Crab Meat(ProductID = 40)**
 ##### SQL Query :
 
-SELECT ProductID,ProductName,MAX(OrdersFromGermany) 
+SELECT ProductID,ProductName,MAX(OrdersFromGermany)
 
 FROM
 
-(SELECT Products.ProductID,ProductName,COUNT(*) AS OrdersFromGermany
+(SELECT Products.ProductID,ProductName,SUM(Quantity)AS OrdersFromGermany
 
-FROM (((Products 
+FROM (((Products
 
 INNER JOIN OrderDetails ON Products.ProductID=OrderDetails.ProductID)
 
 INNER JOIN Orders ON OrderDetails.OrderID = Orders.OrderID)
 
-INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID) 
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
 
 WHERE Country = 'Germany'
 
 GROUP BY Products.ProductID);
-        
-
-
-
-
-
-
-        
