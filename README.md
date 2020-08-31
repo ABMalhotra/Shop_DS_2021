@@ -34,13 +34,11 @@ What is the last name of the employee with the most orders? **Peacock**
 
 SELECT LastName, MAX(OrdersTaken)
 
-FROM
+FROM 
 
 (SELECT LastName, COUNT(*) AS OrdersTaken
 
-FROM (Orders
-
-INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
+FROM (Orders INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
 
 GROUP BY Employees.EmployeeID);
 
@@ -54,9 +52,7 @@ FROM
 
 (SELECT Products.ProductID,ProductName,COUNT(*) AS OrdersFromGermany
 
-FROM (((Products
-
-INNER JOIN OrderDetails ON Products.ProductID=OrderDetails.ProductID)
+FROM (((Products INNER JOIN OrderDetails ON Products.ProductID=OrderDetails.ProductID)
 
 INNER JOIN Orders ON OrderDetails.OrderID = Orders.OrderID)
 
